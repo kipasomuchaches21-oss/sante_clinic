@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Акции — Sante Clinic{% endblock %}
+{% block content %}
+<div class="page-banner">
+  <div class="container page-banner__inner">
+    <div class="breadcrumbs"><a href="/">Главная</a> <span class="breadcrumbs__sep">›</span><span class="breadcrumbs__current">Акции</span></div>
+    <h1>Акции и спецпредложения</h1>
+    <p>Выгодные предложения для наших пациентов</p>
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="services-grid">
+      {% for sp in specials %}
+      <a href="/special/{{ sp.slug }}" class="service-card" style="background:linear-gradient(135deg,var(--primary),#0d2218);color:#fff;border:none;">
+        <div class="service-card__icon">🎁</div>
+        <div class="service-card__title" style="color:#fff;">{{ sp.title }}</div>
+        <p class="service-card__desc" style="color:rgba(255,255,255,.7);">{{ sp.preview }}</p>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--accent);">{{ sp.price }}</div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

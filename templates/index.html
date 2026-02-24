@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% block title %}Sante Clinic — Медицинский центр на Тверской{% endblock %}
+
+{% block content %}
+
+<!-- ── HERO ─────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero__content container">
+    <div class="hero__badge">✦ Медицина высокого уровня</div>
+    <h1 class="hero__title">
+      Ваше здоровье —<br>
+      наша <em>миссия</em>
+    </h1>
+    <p class="hero__desc">
+      Современный медицинский центр в Москве. Опытные врачи, новейшее оборудование и индивидуальный подход к каждому пациенту.
+    </p>
+    <div class="hero__ctas">
+      <button class="btn btn--primary btn--lg" onclick="openModal('appointment')">Записаться на приём</button>
+      <a href="/doctors" class="btn btn--outline btn--lg">Наши врачи</a>
+    </div>
+    <div class="hero__stats">
+      <div>
+        <div class="hero__stat-num">15+</div>
+        <div class="hero__stat-label">лет опыта</div>
+      </div>
+      <div>
+        <div class="hero__stat-num">40+</div>
+        <div class="hero__stat-label">специалистов</div>
+      </div>
+      <div>
+        <div class="hero__stat-num">12 000+</div>
+        <div class="hero__stat-label">пациентов в год</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero__visual">
+    <div class="hero__visual-pattern"></div>
+    <div class="hero__visual-card">
+      <span class="hero__visual-icon">⚕️</span>
+      <div class="hero__visual-text">Профессиональная медицина</div>
+      <div class="hero__visual-sub">Тверская ул., д. 18, с. 2</div>
+    </div>
+    <div class="hero__float hero__float--1">
+      <div class="hero__float-val">★ 5.0</div>
+      <div>Рейтинг клиники</div>
+    </div>
+    <div class="hero__float hero__float--2">
+      <div class="hero__float-val">24/7</div>
+      <div>Экстренная помощь</div>
+    </div>
+    <div class="hero__float hero__float--3">
+      <div class="hero__float-val">ОМС</div>
+      <div>Принимаем полисы</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── УСЛУГИ ────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section__header">
+      <span class="section-label">Направления</span>
+      <h2 class="section-title">Медицинские услуги</h2>
+      <p class="section-subtitle">Широкий спектр медицинской помощи и косметологических процедур на базе современного оборудования</p>
+    </div>
+    <div class="services-grid">
+      <a href="/medicine/terapiya" class="service-card">
+        <div class="service-card__icon">🫀</div>
+        <div class="service-card__title">Терапия</div>
+        <p class="service-card__desc">Комплексная диагностика и лечение внутренних болезней.</p>
+        <span class="service-card__link">Подробнее →</span>
+      </a>
+      <a href="/medicine/ortopediya" class="service-card">
+        <div class="service-card__icon">🦴</div>
+        <div class="service-card__title">Ортопедия</div>
+        <p class="service-card__desc">Лечение заболеваний опорно-двигательного аппарата.</p>
+        <span class="service-card__link">Подробнее →</span>
+      </a>
+      <a href="/cosmetology/laser-cosmetology" class="service-card">
+        <div class="service-card__icon">✨</div>
+        <div class="service-card__title">Лазерная косметология</div>
+        <p class="service-card__desc">Лазерные процедуры для омоложения и улучшения кожи.</p>
+        <span class="service-card__link">Подробнее →</span>
+      </a>
+      <a href="/cosmetology/injection-cosmetology" class="service-card">
+        <div class="service-card__icon">💉</div>
+        <div class="service-card__title">Инъекционная косметология</div>
+        <p class="service-card__desc">Ботулинотерапия, контурная пластика, мезотерапия.</p>
+        <span class="service-card__link">Подробнее →</span>
+      </a>
+    </div>
+    <div style="text-align:center; margin-top:40px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a href="/medicine" class="btn btn--outline">Все медицинские услуги</a>
+      <a href="/cosmetology" class="btn btn--outline">Косметология</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── АКЦИИ ─────────────────────────────────────── -->
+{% if specials %}
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__header">
+      <span class="section-label">Спецпредложения</span>
+      <h2 class="section-title">Актуальные акции</h2>
+    </div>
+    <div class="services-grid">
+      {% for sp in specials %}
+      <a href="/special/{{ sp.slug }}" class="service-card" style="background:linear-gradient(135deg,#1a3a2a,#0d2218); color:#fff; border:none;">
+        <div class="service-card__icon">🎁</div>
+        <div class="service-card__title" style="color:#fff;">{{ sp.title }}</div>
+        <p class="service-card__desc" style="color:rgba(255,255,255,.7);">{{ sp.preview }}</p>
+        <div style="font-size:1.1rem; font-weight:700; color:var(--accent);">{{ sp.price }}</div>
+        <span class="service-card__link" style="color:var(--accent-light);">Подробнее →</span>
+      </a>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:32px;">
+      <a href="/special" class="btn btn--primary">Все акции</a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ── ВРАЧИ ─────────────────────────────────────── -->
+<section class="section">
+  <div class="container">
+    <div class="section__header">
+      <span class="section-label">Команда</span>
+      <h2 class="section-title">Наши специалисты</h2>
+      <p class="section-subtitle">Профессионалы высокой квалификации с многолетним опытом</p>
+    </div>
+    <div class="doctors-grid">
+      {% for doc in doctors %}
+      <a href="/doctors/{{ doc.slug }}" class="doctor-card">
+        <div class="doctor-card__photo">{{ '👩‍⚕️' if doc.gender == 'female' else '👨‍⚕️' }}</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__name">{{ doc.name }}</div>
+          <div class="doctor-card__position">{{ doc.position }}</div>
+          <div class="doctor-card__degree">{{ doc.degree }}</div>
+          <div style="font-size:.85rem; color:var(--text-muted);">Стаж: {{ doc.experience }}</div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="/doctors" class="btn btn--outline">Все врачи</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── ОТЗЫВЫ ────────────────────────────────────── -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="section__header section__header--center">
+      <span class="section-label">Отзывы</span>
+      <h2 class="section-title">Что говорят пациенты</h2>
+    </div>
+    <div class="reviews-grid">
+      {% for rev in reviews %}
+      <div class="review-card">
+        <div class="review-card__quote">"</div>
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">{{ rev.text }}</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar">{{ '👩' if rev.gender == 'female' else '👨' }}</div>
+          <div>
+            <div class="review-card__name">{{ rev.name }}</div>
+            <div class="review-card__role">{{ rev.profession }}</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:40px; display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+      <a href="/reviews" class="btn btn--outline">Все отзывы</a>
+      <button class="btn btn--primary" onclick="openModal('appointment')">Оставить отзыв</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── ПОДПИСКА ──────────────────────────────────── -->
+<div class="subscribe-section">
+  <div class="container">
+    <h2>Будьте в курсе новостей</h2>
+    <p>Подпишитесь и получайте актуальные акции и статьи о здоровье</p>
+    <form class="subscribe-form" onsubmit="return false;">
+      <input type="email" placeholder="Ваш email" required>
+      <button class="btn btn--accent">Подписаться</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

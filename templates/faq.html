@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Вопрос-ответ — Sante Clinic{% endblock %}
+{% block content %}
+<div class="page-banner">
+  <div class="container page-banner__inner">
+    <div class="breadcrumbs">
+      <a href="/">Главная</a> <span class="breadcrumbs__sep">›</span>
+      <span class="breadcrumbs__current">Вопрос-ответ</span>
+    </div>
+    <h1>Вопрос-ответ</h1>
+    <p>Ответы на самые популярные вопросы наших пациентов</p>
+  </div>
+</div>
+<section class="section">
+  <div class="container" style="max-width:800px;">
+    <div>
+      {% for faq in faqs %}
+      <div class="faq-item">
+        <button class="faq-question">
+          {{ faq.question }}
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            <p>{{ faq.answer }}</p>
+            {% if faq.doctor %}<p style="margin-top:12px;font-size:.85rem;color:var(--accent);">Отвечает: {{ faq.doctor }}</p>{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:48px;background:var(--bg2);padding:40px;border-radius:var(--radius-lg);">
+      <h3 style="margin-bottom:12px;">Не нашли ответ?</h3>
+      <p style="color:var(--text-muted);margin-bottom:20px;">Задайте свой вопрос нашим специалистам</p>
+      <button class="btn btn--primary" onclick="openModal('appointment')">Задать вопрос</button>
+    </div>
+  </div>
+</section>
+{% endblock %}

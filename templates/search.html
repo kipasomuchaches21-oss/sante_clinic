@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Поиск{% if query %}: {{ query }}{% endif %} — Sante Clinic{% endblock %}
+{% block content %}
+<div class="page-banner">
+  <div class="container page-banner__inner">
+    <div class="breadcrumbs"><a href="/">Главная</a> <span class="breadcrumbs__sep">›</span><span class="breadcrumbs__current">Поиск</span></div>
+    <h1>Результаты поиска</h1>
+    {% if query %}<p>По запросу «{{ query }}» найдено {{ results|length }} результатов</p>{% endif %}
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <form action="/search" method="get" style="max-width:600px;margin-bottom:48px;display:flex;gap:12px;">
+      <input name="q" value="{{ query }}" placeholder="Введите запрос…" class="form-input" style="flex:1;">
+      <button type="submit" class="btn btn--primary">Найти</button>
+    </form>
+    {% if results %}
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      {% for r in results %}
+      <a href="{{ r.url }}" style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);transition:var(--transition);" onmouseover="this.style.boxShadow='var(--shadow-lg)'" onmouseout="this.style.boxShadow=''">
+        <div>
+          <div style="font-weight:600;color:var(--primary);margin-bottom:4px;">{{ r.title }}</div>
+        </div>
+        <span class="tag tag--active">{{ r.section }}</span>
+      </a>
+      {% endfor %}
+    </div>
+    {% elif query %}
+    <div style="text-align:center;padding:60px;color:var(--text-muted);">
+      <div style="font-size:3rem;margin-bottom:16px;">🔍</div>
+      <h3 style="color:var(--primary);margin-bottom:12px;">Ничего не найдено</h3>
+      <p>Попробуйте изменить запрос или воспользуйтесь разделами сайта</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

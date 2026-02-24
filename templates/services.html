@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} — Sante Clinic{% endblock %}
+{% block content %}
+
+<div class="page-banner">
+  <div class="container page-banner__inner">
+    <div class="breadcrumbs">
+      <a href="/">Главная</a>
+      <span class="breadcrumbs__sep">›</span>
+      <span class="breadcrumbs__current">{{ title }}</span>
+    </div>
+    <h1>{{ title }}</h1>
+    <p>Современные методы лечения и диагностики с применением оборудования последнего поколения</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="services-grid">
+      {% for s in services %}
+      <a href="/{{ category }}/{{ s.slug }}" class="service-card">
+        <div class="service-card__icon">{{ s.icon }}</div>
+        <div class="service-card__title">{{ s.title }}</div>
+        <p class="service-card__desc">{{ s.description }}</p>
+        <span class="service-card__link">Подробнее →</span>
+      </a>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <button class="btn btn--primary btn--lg" onclick="openModal('appointment')">Записаться на приём</button>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

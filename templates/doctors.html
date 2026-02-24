@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Врачи — Sante Clinic{% endblock %}
+{% block content %}
+<div class="page-banner">
+  <div class="container page-banner__inner">
+    <div class="breadcrumbs">
+      <a href="/">Главная</a> <span class="breadcrumbs__sep">›</span>
+      <span class="breadcrumbs__current">Врачи</span>
+    </div>
+    <h1>Наши специалисты</h1>
+    <p>Команда профессионалов высокого уровня в различных областях медицины</p>
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="doctors-grid">
+      {% for doc in doctors %}
+      <a href="/doctors/{{ doc.slug }}" class="doctor-card">
+        <div class="doctor-card__photo">{{ '👩‍⚕️' if doc.gender == 'female' else '👨‍⚕️' }}</div>
+        <div class="doctor-card__body">
+          <div class="doctor-card__name">{{ doc.name }}</div>
+          <div class="doctor-card__position">{{ doc.position }}</div>
+          <div class="doctor-card__degree">{{ doc.degree }}</div>
+          <div style="font-size:.85rem;color:var(--text-muted);margin-bottom:16px;">Стаж: {{ doc.experience }}</div>
+          <span class="btn btn--outline btn--sm">Подробнее</span>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

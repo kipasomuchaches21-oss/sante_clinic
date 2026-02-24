@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Отзывы — Sante Clinic{% endblock %}
+{% block content %}
+<div class="page-banner">
+  <div class="container page-banner__inner">
+    <div class="breadcrumbs">
+      <a href="/">Главная</a> <span class="breadcrumbs__sep">›</span>
+      <span class="breadcrumbs__current">Отзывы</span>
+    </div>
+    <h1>Отзывы пациентов</h1>
+    <p>Мнения тех, кто уже доверился нашей клинике</p>
+    <div class="tags" style="margin-top:20px;">
+      <a href="/reviews" class="tag {{ 'tag--active' if not current_tag }}">Все</a>
+      <a href="/reviews?tag=Клиника" class="tag {{ 'tag--active' if current_tag == 'Клиника' }}">Клиника</a>
+      <a href="/reviews?tag=Косметология" class="tag {{ 'tag--active' if current_tag == 'Косметология' }}">Косметология</a>
+      <a href="/reviews?tag=Ортопедия" class="tag {{ 'tag--active' if current_tag == 'Ортопедия' }}">Ортопедия</a>
+    </div>
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="reviews-grid">
+      {% for rev in reviews %}
+      <div class="review-card">
+        <div class="review-card__quote">"</div>
+        <div class="review-card__stars">★★★★★</div>
+        <p class="review-card__text">{{ rev.text }}</p>
+        <div class="review-card__author">
+          <div class="review-card__avatar">{{ '👩' if rev.gender == 'female' else '👨' }}</div>
+          <div>
+            <div class="review-card__name">{{ rev.name }}</div>
+            <div class="review-card__role">{{ rev.profession }}</div>
+          </div>
+        </div>
+        {% if rev.tags %}
+        <div class="tags" style="margin-top:16px;">
+          {% for tag in rev.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <button class="btn btn--primary btn--lg" onclick="openModal('appointment')">Оставить отзыв</button>
+    </div>
+  </div>
+</section>
+{% endblock %}

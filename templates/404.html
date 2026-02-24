@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Страница не найдена — Sante Clinic{% endblock %}
+{% block content %}
+<div class="error-page">
+  <div>
+    <div class="error-page__num">404</div>
+    <h2>Страница не найдена</h2>
+    <p>Возможно, она была удалена или вы ввели неправильный адрес.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+      <a href="/" class="btn btn--primary btn--lg">На главную</a>
+      <a href="/contacts" class="btn btn--outline btn--lg">Контакты</a>
+    </div>
+    <div style="margin-top:48px;">
+      <h4 style="margin-bottom:20px;color:var(--text-muted);">Карта сайта</h4>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+        {% for link in [('/', 'Главная'), ('/medicine', 'Медицина'), ('/cosmetology', 'Косметология'), ('/doctors', 'Врачи'), ('/reviews', 'Отзывы'), ('/blog', 'Блог'), ('/about', 'О клинике'), ('/contacts', 'Контакты')] %}
+        <a href="{{ link[0] }}" class="tag">{{ link[1] }}</a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

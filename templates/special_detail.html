@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{ special.title }} — Sante Clinic{% endblock %}
+{% block content %}
+<div class="page-banner">
+  <div class="container page-banner__inner">
+    <div class="breadcrumbs"><a href="/">Главная</a> <span class="breadcrumbs__sep">›</span><a href="/special">Акции</a> <span class="breadcrumbs__sep">›</span><span class="breadcrumbs__current">{{ special.title }}</span></div>
+    <h1>{{ special.title }}</h1>
+    <p>{{ special.preview }}</p>
+    <div style="font-size:1.4rem;font-weight:700;color:var(--accent);margin-top:12px;">{{ special.price }}</div>
+  </div>
+</div>
+<section class="section">
+  <div class="container" style="max-width:800px;">
+    <p style="font-size:1.05rem;line-height:1.85;color:var(--text-muted);">{{ special.text }}</p>
+    <div style="margin-top:32px;">
+      <button class="btn btn--primary btn--lg" onclick="openModal('appointment')">Записаться по акции</button>
+    </div>
+    {% if others %}
+    <h3 style="margin-top:56px;margin-bottom:24px;color:var(--primary);">Другие акции</h3>
+    <div class="services-grid">
+      {% for o in others %}
+      <a href="/special/{{ o.slug }}" class="service-card">
+        <div class="service-card__icon">🎁</div>
+        <div class="service-card__title">{{ o.title }}</div>
+        <p class="service-card__desc">{{ o.preview }}</p>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

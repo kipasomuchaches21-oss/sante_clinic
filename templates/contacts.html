@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Контакты — Sante Clinic{% endblock %}
+{% block content %}
+<div class="page-banner">
+  <div class="container page-banner__inner">
+    <div class="breadcrumbs"><a href="/">Главная</a> <span class="breadcrumbs__sep">›</span><span class="breadcrumbs__current">Контакты</span></div>
+    <h1>Контакты</h1>
+    <p>Мы находимся в самом центре Москвы</p>
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <div class="contacts-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div><div class="contact-label">Адрес</div><div class="contact-value">Тверская ул., д. 18, с. 2, г. Москва</div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div><div class="contact-label">Телефон</div><div class="contact-value"><a href="tel:+74951234567">+7 (495) 123-45-67</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div><div class="contact-label">Email</div><div class="contact-value"><a href="mailto:info@santeclinic.ru">info@santeclinic.ru</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div><div class="contact-label">Режим работы</div><div class="contact-value">Пн–Пт: 8:00–21:00<br>Сб–Вс: 9:00–18:00</div></div>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <button class="btn btn--primary" onclick="openModal('appointment')">Записаться на приём</button>
+          <button class="btn btn--outline" onclick="openModal('callback')">Перезвоните мне</button>
+        </div>
+      </div>
+      <div>
+        <div class="map-placeholder">
+          <span style="font-size:2rem;">🗺️</span>
+          <div style="font-weight:600;color:var(--primary);">Яндекс.Карты</div>
+          <p style="font-size:.9rem;text-align:center;padding:0 20px;">Тверская ул., д. 18, с. 2, г. Москва<br><small>Для отображения карты вставьте iframe от Яндекс.Карт</small></p>
+          <a href="https://yandex.ru/maps/?text=Тверская+18с2+Москва" target="_blank" class="btn btn--outline btn--sm">Открыть карту</a>
+        </div>
+        <div style="margin-top:20px;background:var(--bg2);border-radius:var(--radius-lg);padding:28px;">
+          <h4 style="margin-bottom:16px;color:var(--primary);">Как добраться</h4>
+          <p style="color:var(--text-muted);font-size:.9rem;line-height:1.7;">
+            🚇 Метро: Тверская, Пушкинская, Чеховская (5 мин. пешком)<br>
+            🚌 Автобусы: № 12, 39, 904<br>
+            🚗 Парковка: рядом с клиникой платная парковка (скидка для пациентов)
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

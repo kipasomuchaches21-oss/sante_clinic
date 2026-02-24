@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block title %}О клинике — Sante Clinic{% endblock %}
+{% block content %}
+<div class="page-banner">
+  <div class="container page-banner__inner">
+    <div class="breadcrumbs"><a href="/">Главная</a> <span class="breadcrumbs__sep">›</span><span class="breadcrumbs__current">О клинике</span></div>
+    <h1>О клинике Sante Clinic</h1>
+    <p>Современный медицинский центр, собравший профессионалов высокого уровня</p>
+  </div>
+</div>
+<section class="section">
+  <div class="container">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:80px;">
+      <div>
+        <span class="section-label">Наша история</span>
+        <h2 style="color:var(--primary);margin-bottom:20px;">15 лет заботы о вашем здоровье</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:20px;">ООО «Дом на Тверской» (Sante Clinic) — современный медицинский центр, собравший коллектив профессионалов самого высокого уровня, специалистов в различных областях медицины и косметологии.</p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:28px;">Для лечения клиентов применяются наиболее эффективные методики, проверенные многолетней клинической практикой. Медицинское обслуживание в Клинике проводится с использованием оборудования последнего поколения.</p>
+        <button class="btn btn--primary" onclick="openModal('appointment')">Записаться на приём</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+        {% for stat in [('15+', 'лет на рынке'), ('40+', 'специалистов'), ('12 000+', 'пациентов в год'), ('★ 5.0', 'рейтинг клиники')] %}
+        <div style="background:var(--bg2);border-radius:var(--radius-lg);padding:28px;text-align:center;border:1px solid var(--border);">
+          <div style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--primary);">{{ stat[0] }}</div>
+          <div style="font-size:.85rem;color:var(--text-muted);margin-top:6px;">{{ stat[1] }}</div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div>
+      <h2 style="color:var(--primary);margin-bottom:40px;text-align:center;">Наши преимущества</h2>
+      <div class="services-grid">
+        {% for adv in [('🏥', 'Современное оборудование', 'Используем технологии последнего поколения для точной диагностики и эффективного лечения'), ('👨‍⚕️', 'Опытные специалисты', 'Более 40 врачей высшей категории с учёными степенями и многолетним опытом'), ('❤️', 'Индивидуальный подход', 'Каждый пациент получает персональную программу лечения и наблюдения'), ('📋', 'Полный спектр услуг', 'Медицина и косметология под одной крышей — экономьте время')] %}
+        <div class="service-card">
+          <div class="service-card__icon">{{ adv[0] }}</div>
+          <div class="service-card__title">{{ adv[1] }}</div>
+          <p class="service-card__desc">{{ adv[2] }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
